@@ -1,0 +1,38 @@
+.milestoneCardContainer {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+#textAndButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#milestoneTitleAndDescription {
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#titleMilestone {
+  margin: 0;
+  padding-top: 2%;
+  text-align: start;
+}
+
+#descriptionMilestone {
+  text-align: start;
+}
+
+#hrDivisorCard {
+  width: 100%;
+  margin-top: 1%;
+  border: none;
+  height: 0.05rem;
+  color: #e0e0e0;
+  background-color: #e0e0e0;
+}
