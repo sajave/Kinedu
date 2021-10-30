@@ -1,0 +1,123 @@
+.containerAreas {
+  width: auto;
+  padding-top: 20px;
+  padding-bottom: 2rem;
+  background-color: #1faddf;
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#areaSectionTitle {
+  color: white;
+}
+
+.areaButtonsGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+}
+
+#buttonContainerPhysycal {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 0px;
+  border-radius: 45px 0px 0px 45px;
+  background-color: white;
+}
+
+#buttonContainerSocialAndEmotional {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 0px;
+  border-radius: 0px 45px 45px 0px;
+  background-color: white;
+}
+
+#buttonPhysical {
+  width: 150px;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: inherit;
+}
+
+#buttonSocialAndEmotional {
+  width: 150px;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: inherit;
+}
+
+#hrDivisor {
+  width: 100%;
+  border: none;
+  height: 0.5px;
+  color: #fff;
+  background-color: #fff;
+}
+
+.skillAreaTitle {
+  color: white;
+  padding-top: 1%;
+}
+
+.descriptionContainer {
+  color: white;
+  font-weight: normal;
+}
+
+.milestonesListContainer {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#areaStateAllButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+#areaStateButtonContainer {
+  width: 250px;
+  padding: 15px 5px 15px 5px;
+  border-width: 0px;
+  border-radius: 45px 45px 45px 45px;
+  background-color: #75b753;
+}
+
+#areaStateButton {
+  background: none;
+  color: white;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
