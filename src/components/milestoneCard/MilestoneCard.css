@@ -20,11 +20,12 @@
 
 #titleMilestone {
   margin: 0;
-  padding-top: 2%;
+  padding-top: 0.2rem;
   text-align: start;
 }
-
-#descriptionMilestone {
+#ageRangeMilestone {
+  margin: 0;
+  padding-top: 0.7rem;
   text-align: start;
 }
 

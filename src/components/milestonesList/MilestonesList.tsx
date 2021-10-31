@@ -4,17 +4,17 @@ import "./MilestonesList.css";
 
 type Props = {
   milestones: milestone[];
+  ageRange: string;
 };
 
-export function MilestoneListComponent({milestones}: Props) {
-  console.log("milestones props", milestones);
-
+export function MilestoneListComponent({milestones, ageRange}: Props) {
   return (
     <div className='listOfMilestones'>
       {milestones.map((e) => {
         return (
           <div key={e.id}>
             <MilestoneCard
+              ageRange={ageRange}
               id={e.id}
               age={e.age}
               skill_id={e.skill_id}
