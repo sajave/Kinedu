@@ -15,6 +15,16 @@ export function Areas() {
   );
   const dispatch = useDispatch();
   const [selectedArea, setSelectedArea] = useState<Skill | undefined>();
+  const [selectedAreaStyle, setSelectedAreaStyle] = useState({
+    containerAreas: "containerAreasPhysical",
+
+    buttonContainerPhysical: "buttonContainerPhysicalSelected",
+    buttonContainerSocialAndEmotional:
+      "buttonContainerSocialAndEmotionalUnselected",
+
+    buttonPhysical: "buttonPhysicalSelected",
+    buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+  });
 
   function getDataFromApi() {
     dispatch(getDataPhysycal());
@@ -23,30 +33,83 @@ export function Areas() {
   }
 
   function setProps(e: any) {
-    if (e.target.id === "buttonPhysical") {
+    if (e.target.id === "buttonPhysicalSelected") {
       setSelectedArea(dataPhysical);
       return;
     }
-    if (e.target.id === "buttonSocialAndEmotional") {
+    if (
+      e.target.id === "buttonSocialAndEmotionalSelected" ||
+      e.target.id === "areaStateButton"
+    ) {
       setSelectedArea(dataSocialAndEmotional);
       return;
     }
   }
 
+  function setStyles(e: any) {
+    if (e.target.id === "buttonPhysicalSelected") {
+      setSelectedAreaStyle({
+        ...selectedAreaStyle,
+        containerAreas: "containerAreasPhysical",
+
+        buttonContainerPhysical: "buttonContainerPhysicalSelected",
+        buttonContainerSocialAndEmotional:
+          "buttonContainerSocialAndEmotionalUnselected",
+
+        buttonPhysical: "buttonPhysicalSelected",
+        buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+      });
+    }
+    if (
+      e.target.id === "buttonSocialAndEmotionalUnselected" ||
+      e.target.id === "areaStateButton"
+    ) {
+      setSelectedAreaStyle({
+        ...selectedAreaStyle,
+        containerAreas: "containerAreasSocialAndEmotional",
+
+        buttonContainerPhysical: "buttonContainerPhysicalUnselected",
+        buttonContainerSocialAndEmotional:
+          "buttonContainerSocialAndEmotionalSelected",
+
+        buttonPhysical: "buttonPhysicalUnselected",
+        buttonSocialAndEmotional: "buttonSocialAndEmotionalSelected",
+      });
+      return;
+    }
+  }
+  console.log("selectedAreaStyle ===>", selectedAreaStyle);
+
   return (
     <div>
-      <div className='containerAreas'>
+      <div className={selectedAreaStyle.containerAreas}>
         <h1>
           <div id='areaSectionTitle'>Areas</div>
         </h1>
         <div className='areaButtonsGroup'>
-          <div id='buttonContainerPhysycal'>
-            <button id='buttonPhysical' onClick={(e) => setProps(e)}>
+          {/* <div id='buttonContainerPhysycal'> */}
+          <div id={selectedAreaStyle.buttonContainerPhysical}>
+            {/* <button id='buttonPhysical' onClick={(e) => setProps(e)}> */}
+            <button
+              id={selectedAreaStyle.buttonPhysical}
+              onClick={(e) => {
+                setProps(e);
+                setStyles(e);
+                return;
+              }}
+            >
               Physical
             </button>
           </div>
-          <div id='buttonContainerSocialAndEmotional'>
-            <button id='buttonSocialAndEmotional' onClick={(e) => setProps(e)}>
+          <div id={selectedAreaStyle.buttonContainerSocialAndEmotional}>
+            <button
+              id={selectedAreaStyle.buttonSocialAndEmotional}
+              onClick={(e) => {
+                setProps(e);
+                setStyles(e);
+                return;
+              }}
+            >
               Social & emotional
             </button>
           </div>
@@ -65,15 +128,13 @@ export function Areas() {
       <div className='milestonesListContainer'>
         <MilestoneListComponent
           milestones={selectedArea?.milestones ? selectedArea.milestones : []}
+          ageRange={selectedArea?.age_range ? selectedArea.age_range : ""}
         />
       </div>
       <div id='areaStateAllButtonContainer'>
         {selectedArea === dataPhysical ? (
           <h3 id='areaStateButtonContainer'>
-            <button
-              id='areaStateButton'
-              onClick={() => setSelectedArea(dataSocialAndEmotional)}
-            >
+            <button id='areaStateButton' onClick={(e) => setProps(e)}>
               Next
             </button>
           </h3>
