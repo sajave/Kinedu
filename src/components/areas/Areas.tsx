@@ -33,12 +33,15 @@ export function Areas() {
   }
 
   function setProps(e: any) {
-    if (e.target.id === "buttonPhysicalSelected") {
+    if (
+      e.target.id === "buttonPhysicalSelected" ||
+      e.target.id === "buttonPhysicalUnselected"
+    ) {
       setSelectedArea(dataPhysical);
       return;
     }
     if (
-      e.target.id === "buttonSocialAndEmotionalSelected" ||
+      e.target.id === "buttonSocialAndEmotionalUnselected" ||
       e.target.id === "areaStateButton"
     ) {
       setSelectedArea(dataSocialAndEmotional);
@@ -47,7 +50,10 @@ export function Areas() {
   }
 
   function setStyles(e: any) {
-    if (e.target.id === "buttonPhysicalSelected") {
+    if (
+      e.target.id === "buttonPhysicalSelected" ||
+      e.target.id === "buttonPhysicalUnselected"
+    ) {
       setSelectedAreaStyle({
         ...selectedAreaStyle,
         containerAreas: "containerAreasPhysical",
@@ -78,7 +84,6 @@ export function Areas() {
       return;
     }
   }
-  console.log("selectedAreaStyle ===>", selectedAreaStyle);
 
   return (
     <div>
@@ -134,7 +139,14 @@ export function Areas() {
       <div id='areaStateAllButtonContainer'>
         {selectedArea === dataPhysical ? (
           <h3 id='areaStateButtonContainer'>
-            <button id='areaStateButton' onClick={(e) => setProps(e)}>
+            <button
+              id='areaStateButton'
+              onClick={(e) => {
+                setProps(e);
+                setStyles(e);
+                return;
+              }}
+            >
               Next
             </button>
           </h3>
