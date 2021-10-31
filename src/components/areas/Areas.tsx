@@ -65,6 +65,7 @@ export function Areas() {
       <div className='milestonesListContainer'>
         <MilestoneListComponent
           milestones={selectedArea?.milestones ? selectedArea.milestones : []}
+          ageRange={selectedArea?.age_range ? selectedArea.age_range : ""}
         />
       </div>
       <div id='areaStateAllButtonContainer'>
