@@ -37,3 +37,20 @@ export interface milestone {
   media_mp4: string;
   answer: null;
 }
+
+export interface MilestoneCardProps {
+  ageRange: string;
+  id: number;
+  age: number;
+  skill_id: number;
+  master: boolean;
+  area_id: number;
+  title: string;
+  description: string;
+  science_fact: string;
+  source_data: string;
+  parent_skill_id: null;
+  media_jpg: string;
+  media_mp4: string;
+  answer: null;
+}
