@@ -1,7 +1,8 @@
-.containerAreas {
+/* Physical style */
+.containerAreasPhysical {
   width: auto;
   padding-top: 20px;
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
   background-color: #1faddf;
   padding-left: 10%;
   padding-right: 10%;
@@ -11,6 +12,138 @@
   align-items: center;
 }
 
+/* Selected */
+#buttonContainerPhysicalSelected {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  color: #1faddf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 45px 0px 0px 45px;
+  background-color: white;
+}
+
+#buttonPhysicalSelected {
+  width: 150px;
+  background: none;
+  color: inherit;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Unselected */
+#buttonContainerPhysicalUnselected {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  color: #1faddf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 45px 0px 0px 45px;
+  background-color: #d43571;
+}
+#buttonPhysicalUnselected {
+  width: 150px;
+  background: none;
+  color: white;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: inherit;
+}
+/* Social & emotional style */
+.containerAreasSocialAndEmotional {
+  width: auto;
+  padding-top: 20px;
+  padding-bottom: 0.5rem;
+  background-color: #d43571;
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Selected */
+#buttonContainerSocialAndEmotionalSelected {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  color: #d43571;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 0px 45px 45px 0px;
+  background-color: white;
+}
+
+#buttonSocialAndEmotionalSelected {
+  width: 150px;
+  background: none;
+  color: inherit;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Unselected */
+#buttonContainerSocialAndEmotionalUnselected {
+  height: 30px;
+  width: 150px;
+  padding: 5px;
+  color: #d43571;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 0px 45px 45px 0px;
+  background-color: #1faddf;
+}
+
+#buttonSocialAndEmotionalUnselected {
+  width: 150px;
+  background: none;
+  color: white;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  outline: inherit;
+}
+/* ----------------------- */
 #areaSectionTitle {
   color: white;
 }
@@ -20,61 +153,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 2%;
-}
-
-#buttonContainerPhysycal {
-  height: 30px;
-  width: 150px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-width: 0px;
-  border-radius: 45px 0px 0px 45px;
-  background-color: white;
-}
-
-#buttonContainerSocialAndEmotional {
-  height: 30px;
-  width: 150px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-width: 0px;
-  border-radius: 0px 45px 45px 0px;
-  background-color: white;
-}
-
-#buttonPhysical {
-  width: 150px;
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  outline: inherit;
-}
-
-#buttonSocialAndEmotional {
-  width: 150px;
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  outline: inherit;
+  margin: 0.8rem;
 }
 
 #hrDivisor {
-  width: 100%;
+  width: 80%;
   border: none;
   height: 0.5px;
   color: #fff;
@@ -83,7 +166,7 @@
 
 .skillAreaTitle {
   color: white;
-  padding-top: 1%;
+  padding-top: 0.5rem;
 }
 
 .descriptionContainer {
@@ -110,6 +193,14 @@
   border-width: 0px;
   border-radius: 45px 45px 45px 45px;
   background-color: #75b753;
+}
+
+#areaStateButtonContainer:hover {
+  width: 250px;
+  padding: 15px 5px 15px 5px;
+  border-width: 0px;
+  border-radius: 45px 45px 45px 45px;
+  background-color: #5c9142;
 }
 
 #areaStateButton {

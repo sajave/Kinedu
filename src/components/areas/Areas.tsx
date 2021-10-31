@@ -15,6 +15,16 @@ export function Areas() {
   );
   const dispatch = useDispatch();
   const [selectedArea, setSelectedArea] = useState<Skill | undefined>();
+  const [selectedAreaStyle, setSelectedAreaStyle] = useState({
+    containerAreas: "containerAreasPhysical",
+
+    buttonContainerPhysical: "buttonContainerPhysicalSelected",
+    buttonContainerSocialAndEmotional:
+      "buttonContainerSocialAndEmotionalUnselected",
+
+    buttonPhysical: "buttonPhysicalSelected",
+    buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+  });
 
   function getDataFromApi() {
     dispatch(getDataPhysycal());
@@ -23,30 +33,88 @@ export function Areas() {
   }
 
   function setProps(e: any) {
-    if (e.target.id === "buttonPhysical") {
+    if (
+      e.target.id === "buttonPhysicalSelected" ||
+      e.target.id === "buttonPhysicalUnselected"
+    ) {
       setSelectedArea(dataPhysical);
       return;
     }
-    if (e.target.id === "buttonSocialAndEmotional") {
+    if (
+      e.target.id === "buttonSocialAndEmotionalUnselected" ||
+      e.target.id === "areaStateButton"
+    ) {
       setSelectedArea(dataSocialAndEmotional);
+      return;
+    }
+  }
+
+  function setStyles(e: any) {
+    if (
+      e.target.id === "buttonPhysicalSelected" ||
+      e.target.id === "buttonPhysicalUnselected"
+    ) {
+      setSelectedAreaStyle({
+        ...selectedAreaStyle,
+        containerAreas: "containerAreasPhysical",
+
+        buttonContainerPhysical: "buttonContainerPhysicalSelected",
+        buttonContainerSocialAndEmotional:
+          "buttonContainerSocialAndEmotionalUnselected",
+
+        buttonPhysical: "buttonPhysicalSelected",
+        buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+      });
+    }
+    if (
+      e.target.id === "buttonSocialAndEmotionalUnselected" ||
+      e.target.id === "areaStateButton"
+    ) {
+      setSelectedAreaStyle({
+        ...selectedAreaStyle,
+        containerAreas: "containerAreasSocialAndEmotional",
+
+        buttonContainerPhysical: "buttonContainerPhysicalUnselected",
+        buttonContainerSocialAndEmotional:
+          "buttonContainerSocialAndEmotionalSelected",
+
+        buttonPhysical: "buttonPhysicalUnselected",
+        buttonSocialAndEmotional: "buttonSocialAndEmotionalSelected",
+      });
       return;
     }
   }
 
   return (
     <div>
-      <div className='containerAreas'>
+      <div className={selectedAreaStyle.containerAreas}>
         <h1>
           <div id='areaSectionTitle'>Areas</div>
         </h1>
         <div className='areaButtonsGroup'>
-          <div id='buttonContainerPhysycal'>
-            <button id='buttonPhysical' onClick={(e) => setProps(e)}>
+          {/* <div id='buttonContainerPhysycal'> */}
+          <div id={selectedAreaStyle.buttonContainerPhysical}>
+            {/* <button id='buttonPhysical' onClick={(e) => setProps(e)}> */}
+            <button
+              id={selectedAreaStyle.buttonPhysical}
+              onClick={(e) => {
+                setProps(e);
+                setStyles(e);
+                return;
+              }}
+            >
               Physical
             </button>
           </div>
-          <div id='buttonContainerSocialAndEmotional'>
-            <button id='buttonSocialAndEmotional' onClick={(e) => setProps(e)}>
+          <div id={selectedAreaStyle.buttonContainerSocialAndEmotional}>
+            <button
+              id={selectedAreaStyle.buttonSocialAndEmotional}
+              onClick={(e) => {
+                setProps(e);
+                setStyles(e);
+                return;
+              }}
+            >
               Social & emotional
             </button>
           </div>
@@ -73,7 +141,11 @@ export function Areas() {
           <h3 id='areaStateButtonContainer'>
             <button
               id='areaStateButton'
-              onClick={() => setSelectedArea(dataSocialAndEmotional)}
+              onClick={(e) => {
+                setProps(e);
+                setStyles(e);
+                return;
+              }}
             >
               Next
             </button>
