@@ -1,12 +1,13 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
-  getDataPhysycal,
+  getDataPhysical,
   getSocialAndEmotional,
 } from "../../store-redux/actions/index";
-import {rootState, Skill} from "../../constants/types";
+import {rootState, SelectedAreaStyle, Skill} from "../../constants/types";
 import {MilestoneListComponent} from "../milestonesList/MilestonesList";
 import "./Areas.css";
+import {DotLoader} from "react-spinners";
 
 export function Areas() {
   const dataPhysical = useSelector((state: rootState) => state.physical);
@@ -15,27 +16,40 @@ export function Areas() {
   );
   const dispatch = useDispatch();
   const [selectedArea, setSelectedArea] = useState<Skill | undefined>();
-  const [selectedAreaStyle, setSelectedAreaStyle] = useState({
-    containerAreas: "containerAreasPhysical",
+  const [selectedAreaStyle, setSelectedAreaStyle] = useState<SelectedAreaStyle>(
+    {
+      containerAreas: "containerAreasPhysical",
 
-    buttonContainerPhysical: "buttonContainerPhysicalSelected",
-    buttonContainerSocialAndEmotional:
-      "buttonContainerSocialAndEmotionalUnselected",
+      buttonContainerPhysical: "buttonContainerPhysicalSelected",
+      buttonContainerSocialAndEmotional:
+        "buttonContainerSocialAndEmotionalUnselected",
 
-    buttonPhysical: "buttonPhysicalSelected",
-    buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
-  });
+      buttonPhysical: "buttonPhysicalSelected",
+      buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+    }
+  );
 
-  function getDataFromApi() {
-    dispatch(getDataPhysycal());
+  useEffect(() => {
+    dispatch(getDataPhysical());
     dispatch(getSocialAndEmotional());
+  }, []);
+
+  useEffect(() => {
+    setSelectedArea(dataPhysical);
+  }, [dispatch]);
+
+  /* function getDataFromApi(e: any | undefined) {
+    dispatch(getDataPhysical());
+    dispatch(getSocialAndEmotional());
+    setProps(e);
     return;
-  }
+  } */
 
   function setProps(e: any) {
     if (
       e.target.id === "buttonPhysicalSelected" ||
-      e.target.id === "buttonPhysicalUnselected"
+      e.target.id === "buttonPhysicalUnselected" ||
+      e.target.id === "getDataButton"
     ) {
       setSelectedArea(dataPhysical);
       return;
@@ -85,6 +99,41 @@ export function Areas() {
     }
   }
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  if (dataPhysical.title.length === 0) {
+    return (
+      <div>
+        <div className={selectedAreaStyle.containerAreas}>
+          <h1>
+            <div id='areaSectionTitle'>Areas</div>
+          </h1>
+          <div className='areaButtonsGroup'>
+            <div id={selectedAreaStyle.buttonContainerPhysical}>
+              <button id={selectedAreaStyle.buttonPhysical}>Physical</button>
+            </div>
+            <div id={selectedAreaStyle.buttonContainerSocialAndEmotional}>
+              <button id={selectedAreaStyle.buttonSocialAndEmotional}>
+                Social & emotional
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id='loadingContainer'>
+          {/* <button id='getDataButton' onClick={(e) => getDataFromApi(e)}>
+            get data
+          </button> */}
+          <DotLoader color={"#1FADDF"} loading={true} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className={selectedAreaStyle.containerAreas}>
@@ -92,9 +141,7 @@ export function Areas() {
           <div id='areaSectionTitle'>Areas</div>
         </h1>
         <div className='areaButtonsGroup'>
-          {/* <div id='buttonContainerPhysycal'> */}
           <div id={selectedAreaStyle.buttonContainerPhysical}>
-            {/* <button id='buttonPhysical' onClick={(e) => setProps(e)}> */}
             <button
               id={selectedAreaStyle.buttonPhysical}
               onClick={(e) => {
@@ -129,7 +176,6 @@ export function Areas() {
           </h4>
         </h1>
       </div>
-      <button onClick={() => getDataFromApi()}>get data</button>
       <div className='milestonesListContainer'>
         <MilestoneListComponent
           milestones={selectedArea?.milestones ? selectedArea.milestones : []}
@@ -144,6 +190,7 @@ export function Areas() {
               onClick={(e) => {
                 setProps(e);
                 setStyles(e);
+                scrollToTop();
                 return;
               }}
             >
