@@ -19,12 +19,11 @@ export function Areas() {
     {
       containerAreas: "containerAreasPhysical",
 
-      buttonContainerPhysical: "buttonContainerPhysicalSelected",
-      buttonContainerSocialAndEmotional:
-        "buttonContainerSocialAndEmotionalUnselected",
+      btnContainerPhysical: "btnContainerPhysicalSelected",
+      btnContainerSAndE: "btnContainerSAndEUnselected",
 
-      buttonPhysical: "buttonPhysicalSelected",
-      buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+      btnPhysical: "btnPhysicalSelected",
+      btnSAndE: "btnSAndEUnselected",
     }
   );
 
@@ -50,77 +49,75 @@ export function Areas() {
     }
   }, [dataPhysical, dataSocialAndEmotional, selectedArea]);
 
-  function setProps(e: any) {
+  const setProps = (e: any) => {
     if (
-      e.target.id === "buttonPhysicalSelected" ||
-      e.target.id === "buttonPhysicalUnselected" ||
+      e.target.id === "btnPhysicalSelected" ||
+      e.target.id === "btnPhysicalUnselected" ||
       e.target.id === "getDataButton"
     ) {
       setSelectedArea(dataPhysical);
       return;
     }
     if (
-      e.target.id === "buttonSocialAndEmotionalUnselected" ||
-      e.target.id === "areaStateButton"
+      e.target.id === "btnSAndEUnselected" ||
+      e.target.id === "areaStateBtn"
     ) {
       setSelectedArea(dataSocialAndEmotional);
       return;
     }
-  }
+  };
 
-  function setStyles(e: any) {
+  const setStyles = (e: any) => {
     if (
-      e.target.id === "buttonPhysicalSelected" ||
-      e.target.id === "buttonPhysicalUnselected"
+      e.target.id === "btnPhysicalSelected" ||
+      e.target.id === "btnPhysicalUnselected"
     ) {
       setSelectedAreaStyle({
         ...selectedAreaStyle,
         containerAreas: "containerAreasPhysical",
 
-        buttonContainerPhysical: "buttonContainerPhysicalSelected",
-        buttonContainerSocialAndEmotional:
-          "buttonContainerSocialAndEmotionalUnselected",
+        btnContainerPhysical: "btnContainerPhysicalSelected",
+        btnContainerSAndE: "btnContainerSAndEUnselected",
 
-        buttonPhysical: "buttonPhysicalSelected",
-        buttonSocialAndEmotional: "buttonSocialAndEmotionalUnselected",
+        btnPhysical: "btnPhysicalSelected",
+        btnSAndE: "btnSAndEUnselected",
       });
     }
     if (
-      e.target.id === "buttonSocialAndEmotionalUnselected" ||
-      e.target.id === "areaStateButton"
+      e.target.id === "btnSAndEUnselected" ||
+      e.target.id === "areaStateBtn"
     ) {
       setSelectedAreaStyle({
         ...selectedAreaStyle,
-        containerAreas: "containerAreasSocialAndEmotional",
+        containerAreas: "containerAreasSAndE",
 
-        buttonContainerPhysical: "buttonContainerPhysicalUnselected",
-        buttonContainerSocialAndEmotional:
-          "buttonContainerSocialAndEmotionalSelected",
+        btnContainerPhysical: "btnContainerPhysicalUnselected",
+        btnContainerSAndE: "btnContainerSAndESelected",
 
-        buttonPhysical: "buttonPhysicalUnselected",
-        buttonSocialAndEmotional: "buttonSocialAndEmotionalSelected",
+        btnPhysical: "btnPhysicalUnselected",
+        btnSAndE: "btnSAndESelected",
       });
       return;
     }
-  }
+  };
 
-  function scrollToTop() {
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }
+  };
 
   return (
     <div>
       <div className={selectedAreaStyle.containerAreas}>
         <h1>
-          <div id='areaSectionTitle'>Areas</div>
+          <div className='areaSectionTitle'>Areas</div>
         </h1>
-        <div className='areaButtonsGroup'>
-          <div id={selectedAreaStyle.buttonContainerPhysical}>
+        <div className='areaBtnsGroup'>
+          <div id={selectedAreaStyle.btnContainerPhysical}>
             <button
-              id={selectedAreaStyle.buttonPhysical}
+              id={selectedAreaStyle.btnPhysical}
               onClick={(e) => {
                 setProps(e);
                 setStyles(e);
@@ -130,9 +127,9 @@ export function Areas() {
               Physical
             </button>
           </div>
-          <div id={selectedAreaStyle.buttonContainerSocialAndEmotional}>
+          <div id={selectedAreaStyle.btnContainerSAndE}>
             <button
-              id={selectedAreaStyle.buttonSocialAndEmotional}
+              id={selectedAreaStyle.btnSAndE}
               onClick={(e) => {
                 setProps(e);
                 setStyles(e);
@@ -143,7 +140,7 @@ export function Areas() {
             </button>
           </div>
         </div>
-        <hr id='hrDivisor'></hr>
+        <hr className='hrDivisor'></hr>
         <h1>
           <div className='skillAreaTitle'>Skill: {selectedArea?.title}</div>
           <h4>
@@ -159,11 +156,11 @@ export function Areas() {
           ageRange={selectedArea?.age_range}
         />
       </div>
-      <div id='areaStateAllButtonContainer'>
+      <div className='areaStateAllBtnContainer'>
         {selectedArea === dataPhysical ? (
-          <h3 id='areaStateButtonContainer'>
+          <h3 className='areaStateBtnContainer'>
             <button
-              id='areaStateButton'
+              className='areaStateBtn'
               onClick={(e) => {
                 setProps(e);
                 setStyles(e);
@@ -175,8 +172,8 @@ export function Areas() {
             </button>
           </h3>
         ) : (
-          <h3 id='areaStateButtonContainer'>
-            <button id='areaStateButton'>Finish assessment</button>
+          <h3 className='areaStateBtnContainer'>
+            <button className='areaStateBtn'>Finish assessment</button>
           </h3>
         )}
       </div>

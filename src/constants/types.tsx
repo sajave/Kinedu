@@ -62,8 +62,8 @@ export interface MilestoneCardProps {
 
 export interface SelectedAreaStyle {
   containerAreas: string;
-  buttonContainerPhysical: string;
-  buttonContainerSocialAndEmotional: string;
-  buttonPhysical: string;
-  buttonSocialAndEmotional: string;
+  btnContainerPhysical: string;
+  btnContainerSAndE: string;
+  btnPhysical: string;
+  btnSAndE: string;
 }
