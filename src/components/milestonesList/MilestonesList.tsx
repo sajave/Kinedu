@@ -1,37 +1,47 @@
-import {milestone} from "../../constants/types";
+import {useSelector} from "react-redux";
+import {DotLoader} from "react-spinners";
+import {milestone, rootState} from "../../constants/types";
 import {MilestoneCard} from "../milestoneCard/MilestoneCard";
 import "./MilestonesList.css";
 
 type Props = {
-  milestones: milestone[];
-  ageRange: string;
+  milestones: milestone[] | undefined;
+  ageRange: string | undefined;
 };
 
 export function MilestoneListComponent({milestones, ageRange}: Props) {
+  const dataPhysical = useSelector((state: rootState) => state.physical);
+
   return (
     <div className='listOfMilestones'>
-      {milestones.map((e) => {
-        return (
-          <div key={e.id}>
-            <MilestoneCard
-              ageRange={ageRange}
-              id={e.id}
-              age={e.age}
-              skill_id={e.skill_id}
-              master={e.master}
-              area_id={e.area_id}
-              title={e.title}
-              description={e.description}
-              science_fact={e.science_fact}
-              source_data={e.source_data}
-              parent_skill_id={e.parent_skill_id}
-              media_jpg={e.media_jpg}
-              media_mp4={e.media_mp4}
-              answer={e.answer}
-            />
-          </div>
-        );
-      })}
+      {dataPhysical ? (
+        milestones?.map((milestone) => {
+          return (
+            <div key={milestone.id}>
+              <MilestoneCard
+                ageRange={ageRange}
+                id={milestone.id}
+                age={milestone.age}
+                skill_id={milestone.skill_id}
+                master={milestone.master}
+                area_id={milestone.area_id}
+                title={milestone.title}
+                description={milestone.description}
+                science_fact={milestone.science_fact}
+                source_data={milestone.source_data}
+                parent_skill_id={milestone.parent_skill_id}
+                media_jpg={milestone.media_jpg}
+                media_mp4={milestone.media_mp4}
+                answer={milestone.answer}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <div id='loadingContainer'>
+          <DotLoader color={"#1FADDF"} loading={true} />
+        </div>
+      )}
     </div>
   );
 }
