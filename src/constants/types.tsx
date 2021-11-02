@@ -44,7 +44,7 @@ export interface CurrentState {
 }
 
 export interface MilestoneCardProps {
-  ageRange: string;
+  ageRange?: string;
   id: number;
   age: number;
   skill_id: number;
