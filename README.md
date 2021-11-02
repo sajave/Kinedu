@@ -1,47 +1,45 @@
-# Getting Started with Create React App
+# Kinedu challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Para iniciar
 
-## Available Scripts
+- Para instalar ir al directorio `/kinedu-challenge` y ejecutar:
 
-In the project directory, you can run:
+  ```
+  npm install
+  ```
 
-### `yarn start`
+- Una vez finalizada la instalación ejecutar:
+  ```
+  npm start
+  ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Funcionamiento
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+La estructura general de componentes es:
 
-### `yarn test`
+> Areas > MilestoneList > MilestoneCard > MilestoneStateButton
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Al iniciar la app, lo primero que se hacen son 2 request a los endpoints brindados y las respuestas se almacenan en el store de Redux (de ahora en adelante no se realizan más request, solo se utiliza lo almacenado).
 
-### `yarn build`
+En el componente Area existe un estado local (selectedArea) controlado por el boton selector de áreas que se encarga de establecer qué props se le enviarán a los componentes hijos. Por ejemplo: Si se selecciona "Social & emocional", el estado local se cargara con los datos correspondientes y los componentes hijos recibirán por props esos datos para mostrarlos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+El componente MilestoneList realiza un .map de los milestones, genera un componente MilestoneCard por cada uno y le envia por props los detalles que contiene cada milestone. En caso de que el array recibido sea nulo, se muestra un spinner (es importado de la libreria "react-spinners")
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+El componente MilestoneCard recibe los detalles de cada milestone y se encarga de mostrar el título, el rango de edad y el componente MilestoneStateButton.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+El componente MilestoneStateButton recibe por props el id del milestone al que pertenece y la respuesta que contiene. Según lo que vi de los endpoints:
 
-### `yarn eject`
+> null = Not answered\
+> 'yes' = Completed\
+> 'no' = Uncompleted
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Una vez que se clickea el botón, se realiza un dispatch para actualizar el "answer" del milestone y a su vez se setea el estilo correspondiente.
+Esta actualización se va a ver reflejada en el componente Area, el cual va a re-renderizar y actualizar los estados de los botones.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Al almacenar y actualizar en el store de Redux, se puede hacer toggle entre areas y las respuestas van a quedar "guardadas" para visualización y posterior envio al backend.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Consideraciones
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# Kinedu
+- Tuve conflictos con los endpoints originales por problemas de CORS. Si bien intenté resolverlo preferí continuar con los endpoints de emergencia para evitar perder tiempo.
+- La fuente utilizada no es la que se especificaba en el link de figma debido a que encontré que es paga, en su reemplazo busqué la más similar posible y gratuita en google fonts.
+- Por cuestiones de tiempo y para priorizar tareas, el diseño mobile no está terminado, sin embargo el diseño no se "rompe" y es bastante responsive.
