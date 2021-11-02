@@ -20,14 +20,14 @@ export function MilestoneCard({
 }: MilestoneCardProps) {
   return (
     <div className='milestoneCardContainer'>
-      <div id='textAndButtonContainer'>
-        <div id='milestoneTitleAndDescription'>
-          <h4 id='titleMilestone'>{title}</h4>
-          <h5 id='ageRangeMilestone'>Usually achieved by: {ageRange}</h5>
+      <div className='textAndBtnContainer'>
+        <div className='milestoneTitleAndDescription'>
+          <h4 className='titleMilestone'>{title}</h4>
+          <h5 className='ageRangeMilestone'>Usually achieved by: {ageRange}</h5>
         </div>
         <MilestoneStateButton id={id} answer={answer} />
       </div>
-      <hr id='hrDivisorCard'></hr>
+      <hr className='hrDivisorCard'></hr>
     </div>
   );
 }
