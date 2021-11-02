@@ -2,10 +2,11 @@ import axios from "axios";
 
 export const GET_PHYSICAL = "GET_PHYSICAL";
 export const GET_SOCIAL_AND_EMOTIONAL = "GET_SOCIAL_AND_EMOTIONAL";
+export const MILESTONE_STATE = "MILESTONE_STATE";
 
-export function getDataPhysycal() {
+export function getDataPhysical() {
   return async function (dispatch: any) {
-    const dataPhysycal = await axios.get(
+    const dataPhysical = await axios.get(
       "https://api.kinedu.com/v3/babies/7652729/skills/23/milestones",
       {
         headers: {
@@ -16,7 +17,7 @@ export function getDataPhysycal() {
     );
     dispatch({
       type: GET_PHYSICAL,
-      payload: dataPhysycal.data,
+      payload: dataPhysical.data,
     });
   };
 }
@@ -35,6 +36,21 @@ export function getSocialAndEmotional() {
     dispatch({
       type: GET_SOCIAL_AND_EMOTIONAL,
       payload: socialAndEmotional.data,
+    });
+  };
+}
+
+export function milestoneState(
+  id: number | undefined,
+  currentState: string | null
+) {
+  return async function (dispatch: any) {
+    dispatch({
+      type: MILESTONE_STATE,
+      payload: {
+        id: id,
+        currentState: currentState,
+      },
     });
   };
 }

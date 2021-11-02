@@ -25,7 +25,7 @@ export function MilestoneCard({
           <h4 id='titleMilestone'>{title}</h4>
           <h5 id='ageRangeMilestone'>Usually achieved by: {ageRange}</h5>
         </div>
-        <MilestoneStateButton />
+        <MilestoneStateButton id={id} answer={answer} />
       </div>
       <hr id='hrDivisorCard'></hr>
     </div>

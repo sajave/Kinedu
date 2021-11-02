@@ -1,42 +1,72 @@
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {milestoneState} from "../../store-redux/actions";
 import "./MilestoneStateButton.css";
 
-export function MilestoneStateButton() {
-  const [milestoneCurrentState, setMilestoneCurrentState] =
-    useState("Not Answered");
+type Props = {
+  id: number;
+  answer: string | null;
+};
+
+export function MilestoneStateButton({id, answer}: Props) {
   const [milestoneCurrentStateStyle, setMilestoneCurrentStateStyle] = useState({
     milestoneStateButtonContainer: "milestoneStateButtonContainerNA",
     milestoneStateButton: "milestoneStateButtonNA",
   });
+  const dispatch = useDispatch();
 
-  function changeMilestoneState() {
-    if (milestoneCurrentState === "Uncompleted") {
-      setMilestoneCurrentState("Completed");
-      setMilestoneCurrentStateStyle({
-        ...milestoneCurrentStateStyle,
-        milestoneStateButtonContainer: "milestoneStateButtonContainerCompleted",
-        milestoneStateButton: "milestoneStateButtonCompleted",
-      });
-      return;
-    } else {
-      setMilestoneCurrentState("Uncompleted");
+  const updateMilestoneState = () => {
+    if (answer === "yes") {
+      dispatch(milestoneState(id, "no"));
       setMilestoneCurrentStateStyle({
         ...milestoneCurrentStateStyle,
         milestoneStateButtonContainer:
           "milestoneStateButtonContainerUncompleted",
         milestoneStateButton: "milestoneStateButtonUncompleted",
       });
-      return;
+    } else {
+      dispatch(milestoneState(id, "yes"));
+      setMilestoneCurrentStateStyle({
+        ...milestoneCurrentStateStyle,
+        milestoneStateButtonContainer: "milestoneStateButtonContainerCompleted",
+        milestoneStateButton: "milestoneStateButtonCompleted",
+      });
     }
-  }
+    return;
+  };
+
   return (
     <div>
-      <h3 id={milestoneCurrentStateStyle.milestoneStateButtonContainer}>
+      <h3
+        className={
+          answer === "yes"
+            ? "milestoneStateButtonContainerCompleted"
+            : answer === "no"
+            ? "milestoneStateButtonContainerUncompleted"
+            : answer === null
+            ? "milestoneStateButtonContainerNA"
+            : ""
+        }
+      >
         <button
-          id={milestoneCurrentStateStyle.milestoneStateButton}
-          onClick={() => changeMilestoneState()}
+          className={
+            answer === "yes"
+              ? "milestoneStateButtonCompleted"
+              : answer === "no"
+              ? "milestoneStateButtonUncompleted"
+              : answer === null
+              ? "milestoneStateButtonNA"
+              : ""
+          }
+          onClick={() => {
+            updateMilestoneState();
+          }}
         >
-          {milestoneCurrentState}
+          {answer === null
+            ? "Not Answered"
+            : answer === "no"
+            ? "Uncompleted"
+            : "Completed"}
         </button>
       </h3>
     </div>

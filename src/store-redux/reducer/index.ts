@@ -1,65 +1,13 @@
-import {GET_PHYSICAL, GET_SOCIAL_AND_EMOTIONAL} from "../actions/index";
+import {
+  GET_PHYSICAL,
+  GET_SOCIAL_AND_EMOTIONAL,
+  MILESTONE_STATE,
+} from "../actions/index";
 import {action, rootState} from "../../constants/types";
 
 const initialState: rootState = {
-  physical: {
-    age_range: "",
-    area_id: 0,
-    children: false,
-    description: "",
-    id: 0,
-    logo_mobile: "",
-    logo_web: "",
-    milestones: [
-      {
-        id: 0,
-        age: 0,
-        skill_id: 0,
-        master: false,
-        area_id: 0,
-        title: "",
-        description: "",
-        science_fact: "",
-        source_data: "",
-        parent_skill_id: null,
-        media_jpg: "",
-        media_mp4: "",
-        answer: null,
-      },
-    ],
-    parent_skill_id: null,
-    percentil_availability: false,
-    title: "",
-  },
-  socialAndEmotional: {
-    age_range: "",
-    area_id: 0,
-    children: false,
-    description: "",
-    id: 0,
-    logo_mobile: "",
-    logo_web: "",
-    milestones: [
-      {
-        id: 0,
-        age: 0,
-        skill_id: 0,
-        master: false,
-        area_id: 0,
-        title: "",
-        description: "",
-        science_fact: "",
-        source_data: "",
-        parent_skill_id: null,
-        media_jpg: "",
-        media_mp4: "",
-        answer: null,
-      },
-    ],
-    parent_skill_id: null,
-    percentil_availability: false,
-    title: "",
-  },
+  physical: null,
+  socialAndEmotional: null,
 };
 
 export default function rootReducer(state = initialState, action: action) {
@@ -73,6 +21,30 @@ export default function rootReducer(state = initialState, action: action) {
       return {
         ...state,
         socialAndEmotional: action.payload.data.skill,
+      };
+    case MILESTONE_STATE:
+      return {
+        ...state,
+        physical: {
+          ...state.physical,
+          milestones: state.physical?.milestones?.map((e) => {
+            if (e.id === action.payload.id) {
+              return {...e, answer: action.payload.currentState};
+            } else {
+              return e;
+            }
+          }),
+        },
+        socialAndEmotional: {
+          ...state.socialAndEmotional,
+          milestones: state.socialAndEmotional?.milestones?.map((e) => {
+            if (e.id === action.payload.id) {
+              return {...e, answer: action.payload.currentState};
+            } else {
+              return e;
+            }
+          }),
+        },
       };
     default:
       return {...state};
