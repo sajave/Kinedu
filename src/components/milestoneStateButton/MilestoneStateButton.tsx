@@ -10,8 +10,8 @@ type Props = {
 
 export function MilestoneStateButton({id, answer}: Props) {
   const [milestoneCurrentStateStyle, setMilestoneCurrentStateStyle] = useState({
-    milestoneStateButtonContainer: "milestoneStateButtonContainerNA",
-    milestoneStateButton: "milestoneStateButtonNA",
+    milestoneStateBtnContainer: "milestoneStateBtnContainerNA",
+    milestoneStateBtn: "milestoneStateBtnNA",
   });
   const dispatch = useDispatch();
 
@@ -20,16 +20,15 @@ export function MilestoneStateButton({id, answer}: Props) {
       dispatch(milestoneState(id, "no"));
       setMilestoneCurrentStateStyle({
         ...milestoneCurrentStateStyle,
-        milestoneStateButtonContainer:
-          "milestoneStateButtonContainerUncompleted",
-        milestoneStateButton: "milestoneStateButtonUncompleted",
+        milestoneStateBtnContainer: "milestoneStateBtnContainerUncompleted",
+        milestoneStateBtn: "milestoneStateBtnUncompleted",
       });
     } else {
       dispatch(milestoneState(id, "yes"));
       setMilestoneCurrentStateStyle({
         ...milestoneCurrentStateStyle,
-        milestoneStateButtonContainer: "milestoneStateButtonContainerCompleted",
-        milestoneStateButton: "milestoneStateButtonCompleted",
+        milestoneStateBtnContainer: "milestoneStateBtnContainerCompleted",
+        milestoneStateBtn: "milestoneStateBtnCompleted",
       });
     }
     return;
@@ -40,22 +39,22 @@ export function MilestoneStateButton({id, answer}: Props) {
       <h3
         className={
           answer === "yes"
-            ? "milestoneStateButtonContainerCompleted"
+            ? "milestoneStateBtnContainerCompleted"
             : answer === "no"
-            ? "milestoneStateButtonContainerUncompleted"
+            ? "milestoneStateBtnContainerUncompleted"
             : answer === null
-            ? "milestoneStateButtonContainerNA"
+            ? "milestoneStateBtnContainerNA"
             : ""
         }
       >
         <button
           className={
             answer === "yes"
-              ? "milestoneStateButtonCompleted"
+              ? "milestoneStateBtnCompleted"
               : answer === "no"
-              ? "milestoneStateButtonUncompleted"
+              ? "milestoneStateBtnUncompleted"
               : answer === null
-              ? "milestoneStateButtonNA"
+              ? "milestoneStateBtnNA"
               : ""
           }
           onClick={() => {

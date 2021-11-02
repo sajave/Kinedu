@@ -1,5 +1,5 @@
 /* Not answered Style */
-.milestoneStateButtonContainerNA {
+.milestoneStateBtnContainerNA {
   min-width: 150px;
   padding: 15px 5px 15px 5px;
   border-width: 0px;
@@ -7,7 +7,7 @@
   background-color: #e9e9e9;
 }
 
-.milestoneStateButtonNA {
+.milestoneStateBtnNA {
   background: none;
   color: #bbbbbb;
   border: none;
@@ -18,7 +18,7 @@
 }
 
 /* Completed style */
-.milestoneStateButtonContainerCompleted {
+.milestoneStateBtnContainerCompleted {
   min-width: 150px;
   padding: 15px 5px 15px 5px;
   border-width: 0px;
@@ -26,7 +26,7 @@
   background-color: #75b753;
 }
 
-.milestoneStateButtonCompleted {
+.milestoneStateBtnCompleted {
   background: none;
   color: white;
   border: none;
@@ -37,7 +37,7 @@
 }
 
 /* Uncompleted Style */
-.milestoneStateButtonContainerUncompleted {
+.milestoneStateBtnContainerUncompleted {
   min-width: 150px;
   padding: 15px 5px 15px 5px;
   border-width: 0px;
@@ -45,7 +45,7 @@
   background-color: #e9e9e9;
 }
 
-.milestoneStateButtonUncompleted {
+.milestoneStateBtnUncompleted {
   background: none;
   color: #75b753;
   border: none;
@@ -56,7 +56,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .milestoneStateButtonContainerUncompleted {
+  .milestoneStateBtnContainerUncompleted {
     width: 40px;
     height: 40px;
     left: calc(50% - 40px / 2 + 106px);

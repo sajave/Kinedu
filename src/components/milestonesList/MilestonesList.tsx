@@ -38,7 +38,7 @@ export function MilestoneListComponent({milestones, ageRange}: Props) {
           );
         })
       ) : (
-        <div id='loadingContainer'>
+        <div className='loadingContainer'>
           <DotLoader color={"#1FADDF"} loading={true} />
         </div>
       )}
