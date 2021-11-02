@@ -7,7 +7,6 @@ import {
 import {rootState, SelectedAreaStyle, Skill} from "../../constants/types";
 import {MilestoneListComponent} from "../milestonesList/MilestonesList";
 import "./Areas.css";
-import {DotLoader} from "react-spinners";
 
 export function Areas() {
   const dataPhysical = useSelector((state: rootState) => state.physical);
@@ -15,7 +14,7 @@ export function Areas() {
     (state: rootState) => state.socialAndEmotional
   );
   const dispatch = useDispatch();
-  const [selectedArea, setSelectedArea] = useState<Skill | undefined>();
+  const [selectedArea, setSelectedArea] = useState<Skill | undefined | null>();
   const [selectedAreaStyle, setSelectedAreaStyle] = useState<SelectedAreaStyle>(
     {
       containerAreas: "containerAreasPhysical",
@@ -30,20 +29,27 @@ export function Areas() {
   );
 
   useEffect(() => {
-    dispatch(getDataPhysical());
-    dispatch(getSocialAndEmotional());
-  }, []);
+    if (dataPhysical === null) {
+      dispatch(getDataPhysical());
+      dispatch(getSocialAndEmotional());
+    }
+  }, [dataPhysical, dispatch]);
 
   useEffect(() => {
-    setSelectedArea(dataPhysical);
-  }, [dispatch]);
-
-  /* function getDataFromApi(e: any | undefined) {
-    dispatch(getDataPhysical());
-    dispatch(getSocialAndEmotional());
-    setProps(e);
-    return;
-  } */
+    if (!selectedArea && dataPhysical) {
+      setSelectedArea(dataPhysical);
+      return;
+    }
+    if (selectedArea?.id === 23) {
+      console.log("****selectedArea.id", selectedArea.id);
+      setSelectedArea(dataPhysical);
+      return;
+    }
+    if (selectedArea?.id === 2) {
+      setSelectedArea(dataSocialAndEmotional);
+      return;
+    }
+  }, [dataPhysical, dataSocialAndEmotional, selectedArea]);
 
   function setProps(e: any) {
     if (
@@ -106,34 +112,6 @@ export function Areas() {
     });
   }
 
-  if (dataPhysical.title.length === 0) {
-    return (
-      <div>
-        <div className={selectedAreaStyle.containerAreas}>
-          <h1>
-            <div id='areaSectionTitle'>Areas</div>
-          </h1>
-          <div className='areaButtonsGroup'>
-            <div id={selectedAreaStyle.buttonContainerPhysical}>
-              <button id={selectedAreaStyle.buttonPhysical}>Physical</button>
-            </div>
-            <div id={selectedAreaStyle.buttonContainerSocialAndEmotional}>
-              <button id={selectedAreaStyle.buttonSocialAndEmotional}>
-                Social & emotional
-              </button>
-            </div>
-          </div>
-        </div>
-        <div id='loadingContainer'>
-          {/* <button id='getDataButton' onClick={(e) => getDataFromApi(e)}>
-            get data
-          </button> */}
-          <DotLoader color={"#1FADDF"} loading={true} />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div>
       <div className={selectedAreaStyle.containerAreas}>
@@ -178,8 +156,8 @@ export function Areas() {
       </div>
       <div className='milestonesListContainer'>
         <MilestoneListComponent
-          milestones={selectedArea?.milestones ? selectedArea.milestones : []}
-          ageRange={selectedArea?.age_range ? selectedArea.age_range : ""}
+          milestones={selectedArea?.milestones}
+          ageRange={selectedArea?.age_range}
         />
       </div>
       <div id='areaStateAllButtonContainer'>
