@@ -41,7 +41,6 @@ export function Areas() {
       return;
     }
     if (selectedArea?.id === 23) {
-      console.log("****selectedArea.id", selectedArea.id);
       setSelectedArea(dataPhysical);
       return;
     }
