@@ -4,22 +4,22 @@ export interface action {
 }
 
 export interface rootState {
-  physical: Skill;
-  socialAndEmotional: Skill;
+  physical: Skill | null;
+  socialAndEmotional: Skill | null;
 }
 
 export interface Skill {
-  age_range: string;
-  area_id: number;
-  children: boolean;
-  description: string;
-  id: number;
-  logo_mobile: string;
-  logo_web: string;
-  milestones: Array<milestone>;
-  parent_skill_id: null;
-  percentil_availability: boolean;
-  title: string;
+  age_range?: string;
+  area_id?: number;
+  children?: boolean;
+  description?: string;
+  id?: number;
+  logo_mobile?: string;
+  logo_web?: string;
+  milestones?: Array<milestone>;
+  parent_skill_id?: null;
+  percentil_availability?: boolean;
+  title?: string;
 }
 
 export interface milestone {
@@ -38,6 +38,11 @@ export interface milestone {
   answer: null;
 }
 
+export interface CurrentState {
+  id: number;
+  currentState: string;
+}
+
 export interface MilestoneCardProps {
   ageRange: string;
   id: number;
@@ -53,4 +58,12 @@ export interface MilestoneCardProps {
   media_jpg: string;
   media_mp4: string;
   answer: null;
+}
+
+export interface SelectedAreaStyle {
+  containerAreas: string;
+  buttonContainerPhysical: string;
+  buttonContainerSocialAndEmotional: string;
+  buttonPhysical: string;
+  buttonSocialAndEmotional: string;
 }
