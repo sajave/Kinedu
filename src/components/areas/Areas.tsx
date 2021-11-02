@@ -157,7 +157,7 @@ export function Areas() {
         />
       </div>
       <div className='areaStateAllBtnContainer'>
-        {selectedArea === dataPhysical ? (
+        {!selectedArea ? null : selectedArea === dataPhysical ? (
           <h3 className='areaStateBtnContainer'>
             <button
               className='areaStateBtn'
