@@ -158,9 +158,9 @@ export function Areas() {
       </div>
       <div className='areaStateAllBtnContainer'>
         {!selectedArea ? null : selectedArea === dataPhysical ? (
-          <h3 className='areaStateBtnContainer'>
+          <h3 id='areaStateBtnContainer'>
             <button
-              className='areaStateBtn'
+              id='areaStateBtn'
               onClick={(e) => {
                 setProps(e);
                 setStyles(e);
@@ -172,8 +172,8 @@ export function Areas() {
             </button>
           </h3>
         ) : (
-          <h3 className='areaStateBtnContainer'>
-            <button className='areaStateBtn'>Finish assessment</button>
+          <h3 id='areaStateBtnContainer'>
+            <button id='areaStateBtn'>Finish assessment</button>
           </h3>
         )}
       </div>
