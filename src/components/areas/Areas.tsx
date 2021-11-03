@@ -32,9 +32,6 @@ export function Areas() {
       dispatch(getDataPhysical());
       dispatch(getSocialAndEmotional());
     }
-  }, [dataPhysical, dispatch]);
-
-  useEffect(() => {
     if (!selectedArea && dataPhysical) {
       setSelectedArea(dataPhysical);
       return;
@@ -47,7 +44,22 @@ export function Areas() {
       setSelectedArea(dataSocialAndEmotional);
       return;
     }
-  }, [dataPhysical, dataSocialAndEmotional, selectedArea]);
+  }, [dataPhysical, dispatch]);
+
+  /* useEffect(() => {
+    if (!selectedArea && dataPhysical) {
+      setSelectedArea(dataPhysical);
+      return;
+    }
+    if (selectedArea?.id === 23) {
+      setSelectedArea(dataPhysical);
+      return;
+    }
+    if (selectedArea?.id === 2) {
+      setSelectedArea(dataSocialAndEmotional);
+      return;
+    }
+  }, [dataPhysical, dataSocialAndEmotional, selectedArea]); */
 
   const setProps = (e: any) => {
     if (
