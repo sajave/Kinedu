@@ -19,15 +19,19 @@ export function MilestoneCard({
   answer,
 }: MilestoneCardProps) {
   return (
-    <div className='milestoneCardContainer'>
-      <div className='textAndBtnContainer'>
-        <div className='milestoneTitleAndDescription'>
-          <h4 className='titleMilestone'>{title}</h4>
-          <h5 className='ageRangeMilestone'>Usually achieved by: {ageRange}</h5>
+    <div className='cardContainer'>
+      <div className='milestoneCardContainer'>
+        <div className='textAndBtnContainer'>
+          <div className='milestoneTitleAndDescription'>
+            <h4 className='titleMilestone'>{title}</h4>
+            <h5 className='ageRangeMilestone'>
+              Usually achieved by: {ageRange}
+            </h5>
+          </div>
+          <MilestoneStateButton id={id} answer={answer} />
         </div>
-        <MilestoneStateButton id={id} answer={answer} />
+        <hr className='hrDivisorCard'></hr>
       </div>
-      <hr className='hrDivisorCard'></hr>
     </div>
   );
 }
