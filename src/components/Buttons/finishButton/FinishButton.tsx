@@ -1,13 +1,18 @@
+import {useState} from "react";
+import {Modal} from "../../modal/Modal";
 import "./FinishButton.css";
 
 export function FinishButton() {
-  const finishModal = () => {};
+  const [show, setShow] = useState<boolean>(false);
 
   return (
-    <h3 id='areaStateBtnContainer'>
-      <button id='areaStateBtn' onClick={() => finishModal()}>
-        Finish assessment
-      </button>
-    </h3>
+    <div>
+      <h3 id='areaStateBtnContainer'>
+        <button id='areaStateBtn' onClick={() => setShow(true)}>
+          Finish assessment
+        </button>
+      </h3>
+      <Modal show={show} onClose={() => setShow(false)} />
+    </div>
   );
 }
