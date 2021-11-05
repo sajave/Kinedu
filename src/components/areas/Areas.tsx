@@ -6,7 +6,9 @@ import {
 } from "../../store-redux/actions/index";
 import {rootState, SelectedAreaStyle, Skill} from "../../constants/types";
 import {MilestoneListComponent} from "../milestonesList/MilestonesList";
+import {FinishButton} from "../Buttons/finishButton/FinishButton";
 import "./Areas.css";
+import {NextButton} from "../Buttons/nextButton/NextButton";
 
 export function Areas() {
   const dataPhysical = useSelector((state: rootState) => state.physical);
@@ -29,8 +31,10 @@ export function Areas() {
 
   useEffect(() => {
     if (dataPhysical === null) {
-      dispatch(getDataPhysical());
-      dispatch(getSocialAndEmotional());
+      setTimeout(() => {
+        dispatch(getDataPhysical());
+        dispatch(getSocialAndEmotional());
+      }, 2000);
     }
     if (!selectedArea && dataPhysical) {
       setSelectedArea(dataPhysical);
@@ -45,21 +49,6 @@ export function Areas() {
       return;
     }
   }, [dataPhysical, dispatch]);
-
-  /* useEffect(() => {
-    if (!selectedArea && dataPhysical) {
-      setSelectedArea(dataPhysical);
-      return;
-    }
-    if (selectedArea?.id === 23) {
-      setSelectedArea(dataPhysical);
-      return;
-    }
-    if (selectedArea?.id === 2) {
-      setSelectedArea(dataSocialAndEmotional);
-      return;
-    }
-  }, [dataPhysical, dataSocialAndEmotional, selectedArea]); */
 
   const setProps = (e: any) => {
     if (
@@ -170,23 +159,13 @@ export function Areas() {
       </div>
       <div className='areaStateAllBtnContainer'>
         {!selectedArea ? null : selectedArea === dataPhysical ? (
-          <h3 id='areaStateBtnContainer'>
-            <button
-              id='areaStateBtn'
-              onClick={(e) => {
-                setProps(e);
-                setStyles(e);
-                scrollToTop();
-                return;
-              }}
-            >
-              Next
-            </button>
-          </h3>
+          <NextButton
+            setProps={setProps}
+            setStyles={setStyles}
+            scrollToTop={scrollToTop}
+          />
         ) : (
-          <h3 id='areaStateBtnContainer'>
-            <button id='areaStateBtn'>Finish assessment</button>
-          </h3>
+          <FinishButton />
         )}
       </div>
     </div>
